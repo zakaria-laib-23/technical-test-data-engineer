@@ -31,8 +31,10 @@ Nous développons une application similaire à Spotify avec notre client. Notre 
 **Important:**
 
 - [Forker le dépôt](https://github.com/moovai/technical-test-data-engineer/fork), puis soumettez une pull request en contribuant sur la branche `develop` pour envoyer vos travaux.
+- Un fichier `docs/ANSWERS.md` est fourni pour :  
+  - guider l'utilisateur dans l'utilisation de votre solution (étapes 1 à 3).  
+  - consigner le contenu des réponses (étapes 4 à) 7
 - Limiter votre travail de programmation uniquement aux **étapes 1 à 3** incluses.
-- Un fichier `docs/ANSWERS.md` est fourni pour consigner le contenu des réponses et guider l'utilisateur dans l'utilisation de votre solution.
 
 ---
 
@@ -75,7 +77,6 @@ Placez vous dans le dossier `src/moovitamix_fastapi`, puis exécuter dans votre 
 ### Comment rendre mes travaux ?
 
 Vos travaux sont attendus sous forme de pull request sur notre [dépôt](https://github.com/moovai/technical-test-data-engineer/). Aidez-vous de la documention officiel de [github](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) pour trouvez les bonnes ressources à ce sujet.
-
 
 ### Comment rouler les tests ?
 
