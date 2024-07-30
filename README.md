@@ -33,7 +33,7 @@ Nous développons une application similaire à Spotify avec notre client. Notre 
 - [Forker le dépôt](https://github.com/moovai/technical-test-data-engineer/fork), puis soumettez une pull request en contribuant sur la branche `develop` pour envoyer vos travaux.
 - Un fichier `docs/ANSWERS.md` est fourni pour :  
   - guider l'utilisateur dans l'utilisation de votre solution (étapes 1 à 3).  
-  - consigner le contenu des réponses (étapes 4 à) 7.
+  - répondre aux questions (étapes 4 à 7).
 - Limiter votre travail de programmation uniquement aux **étapes 1 à 3** incluses.
 
 ---
