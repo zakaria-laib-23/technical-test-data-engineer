@@ -1,21 +1,39 @@
 import pytest
 from unittest.mock import patch, AsyncMock
-
-from ingestor.api_client import APIClient
+import httpx
+from ingestor.api_client import APIClient  # Replace with the correct import path
 
 
 @pytest.mark.asyncio
 @patch("httpx.AsyncClient.get")
 async def test_fetch_paginated_data(mock_get):
-    # Mock the response from the API
-    mock_response = AsyncMock()
-    mock_response.json.return_value = {"items": [{"id": 1, "name": "Test Item"}]}
-    mock_response.raise_for_status = AsyncMock()  # Simulates no error
-    mock_get.return_value = mock_response
+    # Create a mock request object
+    request = httpx.Request("GET", "https://api.example.com/data")
 
+    # First mock response (page 1 with data)
+    first_response = httpx.Response(
+        status_code=200,
+        json={"items": [{"id": 1, "name": "Test Item"}]},
+        request=request
+    )
+
+    # Second mock response (page 2 with no data to stop pagination)
+    second_response = httpx.Response(
+        status_code=200,
+        json={"items": []},
+        request=request
+    )
+
+    # Set up the mock to return the first response, then the second response
+    mock_get.side_effect = [first_response, second_response]
+
+    # Instantiate the API client
     client = APIClient(base_url="https://api.example.com")
+
+    # Call the method
     data = await client.fetch_paginated_data(endpoint="/data")
 
+    # Assertions
     assert isinstance(data, list)
-    assert len(data) > 0
+    assert len(data) == 1  # Only one item should be returned
     assert data[0]["id"] == 1

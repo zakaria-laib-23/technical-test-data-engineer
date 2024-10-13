@@ -33,7 +33,6 @@ class APIClient:
                     if retry_count < self.retries:
                         retry_count += 1
                         print(f"Error: {exc}. Retrying {retry_count}/{self.retries}...")
-                        # Exponential backoff
                         await asyncio.sleep(2 ** retry_count)
                     else:
                         print(f"Max retries exceeded for {endpoint}.")
