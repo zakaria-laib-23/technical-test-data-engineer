@@ -1,11 +1,11 @@
 import pytest
 from unittest.mock import patch, AsyncMock, call
-from ingestor.data_ingestor_worker import DataIngestorActor
+from data_ingestion_pipeline.data_ingestor_worker import DataIngestorActor
 
 
 @pytest.mark.asyncio
 @patch("pandas.DataFrame.to_csv")  # Mock the file writing
-@patch("ingestor.data_ingestor.DataIngestor.fetch_paginated_data_stream")  # Mock the data fetcher
+@patch("data_ingestion_pipeline.data_ingestor.DataIngestor.fetch_paginated_data_stream")  # Mock the data fetcher
 @patch("os.path.isfile")  # Mock the file existence check
 async def test_ingest_and_save_data(mock_isfile, mock_fetch_paginated_data, mock_to_csv):
     # Mock the file existence - assume file does not exist for the first page, and exists after

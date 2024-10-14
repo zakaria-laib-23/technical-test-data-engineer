@@ -1,6 +1,6 @@
 import ray
 import logging
-from ingestor.data_ingestor_worker import DataIngestorWorker
+from data_ingestion_pipeline.data_ingestor_worker import DataIngestorWorker
 
 
 class DataIngestorPipeline:

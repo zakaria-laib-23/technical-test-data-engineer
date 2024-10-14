@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
-from ingestor.api_client import APIClient  # Update this import to match your actual module path
+from data_ingestion_pipeline.api_client import APIClient  # Update this import to match your actual module path
 
 @pytest.mark.asyncio
 async def test_fetch_page():

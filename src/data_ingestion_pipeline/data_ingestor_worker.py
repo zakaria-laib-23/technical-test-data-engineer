@@ -3,8 +3,8 @@ import pandas as pd
 import os
 from typing import List
 
-from ingestor.api_client import APIClient
-from ingestor.data_ingestor import DataIngestor
+from data_ingestion_pipeline.api_client import APIClient
+from data_ingestion_pipeline.data_ingestor import DataIngestor
 
 class DataIngestorActor:
     """

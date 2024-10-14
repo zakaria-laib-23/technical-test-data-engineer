@@ -1,6 +1,6 @@
 from typing import AsyncGenerator
 
-from ingestor.api_client import APIClient
+from data_ingestion_pipeline.api_client import APIClient
 
 
 class DataIngestor:

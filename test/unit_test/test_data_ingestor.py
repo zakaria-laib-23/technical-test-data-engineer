@@ -1,8 +1,8 @@
 import pytest
 from unittest.mock import AsyncMock, patch
 import httpx
-from ingestor.api_client import APIClient
-from ingestor.data_ingestor import DataIngestor  # Adjust the import paths based on your project structure
+from data_ingestion_pipeline.api_client import APIClient
+from data_ingestion_pipeline.data_ingestor import DataIngestor  # Adjust the import paths based on your project structure
 
 
 # Fixture for mocking APIClient.fetch_page
