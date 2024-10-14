@@ -1,5 +1,3 @@
-from typing import AsyncGenerator
-
 from data_ingestion_pipeline.api_client import APIClient
 
 
@@ -10,7 +8,7 @@ class DataIngestor:
     def __init__(self, client: APIClient):
         self.client = client
 
-    async def fetch_paginated_data_stream(self, endpoint: str, start_page: int = 1, end_page: int = None) -> AsyncGenerator:
+    async def fetch_paginated_data_stream(self, endpoint: str, start_page: int = 1, end_page: int = None) :
         """
         Stream paginated data from a given endpoint, within the specified page range.
 

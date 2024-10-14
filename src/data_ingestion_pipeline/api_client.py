@@ -7,7 +7,7 @@ class APIClient:
         self.retries = retries
         self.timeout = timeout
 
-    async def fetch_page(self, endpoint: str, page: int) -> dict:
+    async def fetch_page(self, endpoint: str, page: int):
         """
         Fetch a single page of data from the API with retries on failure.
         """

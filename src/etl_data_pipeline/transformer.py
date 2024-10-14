@@ -5,29 +5,35 @@ from etl_data_pipeline.base_stage import PipelineStage
 class DataTransformer(PipelineStage):
     """Responsible for cleaning and transforming data."""
 
-    def clean_tracks(self, tracks_df):
+    @staticmethod
+    def clean_tracks(tracks_df):
         """Cleans and filters tracks data."""
         return tracks_df.dropna(subset=["name", "artist", "duration", "genres"]) \
             .filter(F.col("duration") > "00:00:00")
 
-    def clean_users(self, users_df):
+    @staticmethod
+    def clean_users(users_df):
         """Cleans and removes duplicates from users data."""
         return users_df.dropDuplicates(["email"])
 
-    def clean_tracks(self, tracks_df):
+    @staticmethod
+    def clean_tracks(tracks_df):
         """Cleans and filters tracks data."""
         return tracks_df.dropna(subset=["name", "artist", "duration", "genres"]) \
             .filter(F.col("duration") > "00:00:00")
 
-    def clean_users(self, users_df):
+    @staticmethod
+    def clean_users(users_df):
         """Cleans and removes duplicates from users data."""
         return users_df.dropDuplicates(["email"])
 
-    def clean_listen_history(self, listen_history_df):
+    @staticmethod
+    def clean_listen_history(listen_history_df):
         """Cleans listen history data."""
         return listen_history_df.dropna()
 
-    def join_data(self, users_df, listen_history_df, tracks_df):
+    @staticmethod
+    def join_data(users_df, listen_history_df, tracks_df):
         """Joins the users, listen history, and tracks data."""
 
         # Rename conflicting columns before join
@@ -61,11 +67,4 @@ class DataTransformer(PipelineStage):
         # Join the data and return the full joined DataFrame
         full_data_df = self.join_data(users_df, listen_history_df, tracks_df)
 
-        return full_data_df
-
-    def execute(self, data):
-        """Executes the data transformation pipeline."""
-        tracks_df = self.clean_tracks(data["tracks_df"])
-        users_df = self.clean_users(data["users_df"])
-        full_data_df = self.join_data(users_df, data["listen_history_df"], tracks_df)
         return full_data_df

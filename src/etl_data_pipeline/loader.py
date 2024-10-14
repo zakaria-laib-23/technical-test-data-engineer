@@ -10,7 +10,8 @@ class DataLoader(PipelineStage):
     def __init__(self):
         self.spark = self.create_spark_session()
 
-    def create_spark_session(self):
+    @staticmethod
+    def create_spark_session():
         """Creates and configures the Spark session with dynamic CPU scaling."""
         # Detect the number of available CPUs
         num_cpus = multiprocessing.cpu_count()

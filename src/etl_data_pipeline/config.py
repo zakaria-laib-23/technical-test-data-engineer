@@ -6,6 +6,5 @@ class PipelineConfig:
     OUTPUT_PATH = "output_data"
     APP_NAME = "MusicDataPipeline"
     MASTER = "local[*]"
-    PARTITION_COLUMN = "user_id"  # Example for partitioning
+    PARTITION_COLUMN = "user_id"
     PAGE_SIZE = 100
-    TOTAL_RECORDS = 10000
