@@ -1,39 +1,32 @@
 import pytest
-from unittest.mock import patch, AsyncMock
-import httpx
-from ingestor.api_client import APIClient  # Replace with the correct import path
-
+from unittest.mock import AsyncMock, MagicMock, patch
+from ingestor.api_client import APIClient  # Update this import to match your actual module path
 
 @pytest.mark.asyncio
-@patch("httpx.AsyncClient.get")
-async def test_fetch_paginated_data(mock_get):
-    # Create a mock request object
-    request = httpx.Request("GET", "https://api.example.com/data")
-
-    # First mock response (page 1 with data)
-    first_response = httpx.Response(
-        status_code=200,
-        json={"items": [{"id": 1, "name": "Test Item"}]},
-        request=request
-    )
-
-    # Second mock response (page 2 with no data to stop pagination)
-    second_response = httpx.Response(
-        status_code=200,
-        json={"items": []},
-        request=request
-    )
-
-    # Set up the mock to return the first response, then the second response
-    mock_get.side_effect = [first_response, second_response]
-
-    # Instantiate the API client
+async def test_fetch_page():
+    """
+    Test the fetch_page method to ensure it retrieves a single page correctly.
+    """
+    # Create an instance of APIClient
     client = APIClient(base_url="https://api.example.com")
 
-    # Call the method
-    data = await client.fetch_paginated_data(endpoint="/data")
+    # Mock the response for the first page
+    mock_response_data = {
+        "items": [{"id": 1, "name": "Test Item"}]
+    }
 
-    # Assertions
-    assert isinstance(data, list)
-    assert len(data) == 1  # Only one item should be returned
-    assert data[0]["id"] == 1
+    # Patch the httpx.AsyncClient.get method to return the mocked response
+    with patch("httpx.AsyncClient.get", new_callable=AsyncMock) as mock_get:
+        # Create a mock response object with the json method returning the mock_response_data
+        mock_response = MagicMock()
+        mock_response.json.return_value = mock_response_data
+
+        mock_get.return_value = mock_response
+
+        # Call the fetch_page method
+        response = await client.fetch_page(endpoint="/test", page=1)
+
+        # Assertions
+        assert response == mock_response_data
+        assert mock_get.called_once()
+        mock_get.assert_called_with("https://api.example.com/test", params={"page": 1})
