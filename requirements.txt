@@ -1,5 +1,10 @@
-faker
-fastapi
-uvicorn
-fastapi_pagination
-pytest
+Faker==30.3.0
+fastapi==0.115.2
+fastapi_pagination==0.12.31
+httpx==0.27.2
+pandas==2.2.3
+pydantic==2.9.2
+pyspark==3.5.3
+pytest==8.3.3
+ray==2.37.0
+setuptools==75.1.0
